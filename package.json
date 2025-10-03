@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start"
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
+    "build": "next build",
+    "build:prod": "NODE_ENV=production next build",
+    "start": "next start",
+    "export": "next export",
+    "gcloud:deploy": "gcloud app deploy",
+    "gcloud:deploy-run": "gcloud run deploy next-together-site --source . --region=europe-west1 --allow-unauthenticated",
+    "gcloud:build": "gcloud builds submit --config cloudbuild.yaml",
+    "docker:build": "docker build -t next-together-site .",
+    "docker:run": "docker run -p 8080:8080 next-together-site"
   },
   "dependencies": {
     "next": "15.5.2",

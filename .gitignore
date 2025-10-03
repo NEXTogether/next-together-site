@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Google Cloud SDK Installer (too large for git)
+GoogleCloudSDKInstaller.exe
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+Thumbs.db

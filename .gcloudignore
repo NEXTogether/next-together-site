@@ -1,0 +1,37 @@
+# Google Cloud ignore file per ottimizzare il deployment
+
+# Next.js
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Testing
+coverage/
+*.log
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# README per sviluppo
+README.md

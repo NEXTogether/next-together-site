@@ -1,0 +1,48 @@
+{
+  "name": "next-together-deployment",
+  "description": "Configurazione deployment per next-together.com su Google Cloud Run",
+  "scripts": {
+    "setup": "echo 'Configurazione Google Cloud per next-together.com'",
+    "deploy": "powershell -ExecutionPolicy Bypass -File deploy-gcloud.ps1",
+    "build-docker": "docker build -t next-together-site -f Dockerfile.optimized .",
+    "test-docker": "docker run -p 8080:8080 next-together-site",
+    "gcloud-init": "gcloud init",
+    "gcloud-auth": "gcloud auth login",
+    "gcloud-project": "gcloud config set project next-together-site"
+  },
+  "cloudRun": {
+    "projectId": "next-together-site",
+    "serviceName": "next-together-site",
+    "region": "europe-west1",
+    "domain": "next-together.com",
+    "settings": {
+      "memory": "1Gi",
+      "cpu": "1",
+      "minInstances": 0,
+      "maxInstances": 10,
+      "port": 8080,
+      "allowUnauthenticated": true
+    }
+  },
+  "environment": {
+    "production": {
+      "NODE_ENV": "production",
+      "NEXT_PUBLIC_SITE_URL": "https://next-together.com",
+      "PORT": "8080",
+      "HOSTNAME": "0.0.0.0"
+    }
+  },
+  "dns": {
+    "domain": "next-together.com",
+    "cnameTarget": "ghs.googlehosted.com",
+    "instructions": [
+      "1. Vai al pannello DNS del tuo provider di dominio",
+      "2. Aggiungi record CNAME:",
+      "   Nome: @ (oppure next-together.com)",
+      "   Valore: ghs.googlehosted.com",
+      "   TTL: 300 (5 minuti)",
+      "3. Attendi propagazione DNS (5-48 ore)",
+      "4. Il certificato SSL sarà generato automaticamente"
+    ]
+  }
+}

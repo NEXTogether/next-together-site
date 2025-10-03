@@ -1,0 +1,25 @@
+# Google App Engine configuration per Next.js
+runtime: nodejs22
+
+env_variables:
+  NODE_ENV: production
+  NEXT_PUBLIC_SITE_URL: https://next-together.com
+
+# Configurazione per servire file statici
+handlers:
+  # Handle all URLs with Next.js
+  - url: /.*
+    script: auto
+    secure: always
+    redirect_http_response_code: 301
+
+# Configurazione per performance
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+# Configurazione per il dominio personalizzato
+network:
+  forwarded_ports:
+    - 8080
